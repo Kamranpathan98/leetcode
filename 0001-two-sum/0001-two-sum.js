@@ -4,12 +4,16 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    for (let i = 0; i < nums.length; i++) {
-    if (nums[i + 1] !== undefined) {
-      if (nums[i] + nums[i + 1] === target) {
-        return [i, i + 1];
-      }
+   const seen = {}; // number -> index
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (seen[complement] !== undefined) {
+      return [seen[complement], i];
     }
+    seen[nums[i]] = i;
   }
+
   return [];
+
 };
